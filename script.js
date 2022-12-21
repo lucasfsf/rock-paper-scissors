@@ -15,19 +15,26 @@ function getPlayerChoice() {
 }
 
 function playRound(computerSelection, playerSelection) {
+    let winner; // 0 - tie; 1 - player; 2 - computer
     let message;
     if (computerSelection === playerSelection) {
         message = `Its a tie. ${computerSelection} = ${playerSelection}`;
+        winner = 0;
     } else if (computerSelection === "rock" && playerSelection === "scissors") {
         message = "You lose. Rock beats Scissors.";
+        winner = 2;
     } else if (computerSelection === "scissors" && playerSelection === "paper") {
         message = "You lose. Scissors beats Paper.";
+        winner = 2;
     } else if (computerSelection === "paper" && playerSelection === "rock") {
         message = "You lose. Paper beats Rock.";
+        winner = 2;
     } else {
         message = `You win. ${playerSelection} beats ${computerSelection}`
+        winner = 1;
     }
-    return message;
+    console.log(message);
+    return winner;
 }
 
 function getWinner(playerScore, computerScore) {
@@ -40,17 +47,23 @@ function getWinner(playerScore, computerScore) {
     }
 }
 
-function playGame() {
+function Game() {
     let rounds = 5;
     let playerScore = 0;
     let computerScore = 0;
+    let roundWinner;
     for (let i = 0; i < rounds; i++) {
         console.log(`Rounds ${i+1}!`);
         console.log(`Player Score: ${playerScore}! | Computer Score: ${computerScore}`);
         // Plays round
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
-        console.log(playRound(computerSelection, playerSelection));
+        roundWinner = playRound(computerSelection, playerSelection);
+        if (roundWinner === 1) {
+            playerScore++;
+        } else if (roundWinner === 2) {
+            computerScore++;
+        }
     }
     getWinner(playerScore, computerScore);
 }
