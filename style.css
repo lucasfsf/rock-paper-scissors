@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+.elements {
+    display: flex;
+    margin: 20px;
+    justify-content: space-around;
+}
+
+#fire, #water, #plant {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+#fire {
+    border-color: red;
+}
+
+#water {
+    border-color: blue;
+}
+
+#plant {
+    border-color: green;
+}
