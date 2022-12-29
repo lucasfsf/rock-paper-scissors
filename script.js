@@ -8,9 +8,7 @@ function getComputerChoice() {
 function getPlayerChoice() {
     let playerChoice = ""
     // prompts user until he provides a proper input
-    while (!CHOICES.includes(playerChoice)) {
-        playerChoice = prompt("Rock, Paper or Scissors?").toLowerCase();
-    }
+    
     return playerChoice;
 }
 
