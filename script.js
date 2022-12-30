@@ -24,7 +24,6 @@ waterButton.addEventListener('click', (e) => {
 plantButton.addEventListener('click', (e) => {
     playRound(getComputerChoice(), 'plant');
 });
-console.log(playerScore);
 
 function getComputerChoice() {
     let randomPick = Math.floor(Math.random() * CHOICES.length);
@@ -48,16 +47,13 @@ function playRound(computerSelection, playerSelection) {
         message = `You win. ${playerSelection} beats ${computerSelection}`
         playerScore++;
     }
-    roundResult.textContent = message;
-}
-
-function getWinner(playerScore, computerScore) {
-    if (playerScore > computerScore) {
-        console.log(`You win. Player Score = ${playerScore} > Computer Score = ${computerScore}`);
-    } else if (computerScore > playerScore) {
-        console.log(`You lose. Computer Score = ${computerScore} > Player Score = ${playerScore}`);
-    } else {
-        console.log('It was a tie!')
+    roundResult.textContent = `Round Result: ${message}`;
+    currentScore.textContent = `Score: Player - ${playerScore}, Computer - ${computerScore}`;
+    if (playerScore >= 10 || computerScore >= 10) {
+        if (playerScore > computerScore) {
+            winnerResult.textContent = `You win. Player Score = ${playerScore} > Computer Score = ${computerScore}`;
+        } else {
+            winnerResult.textContent = `You lose. Computer Score = ${computerScore} > Player Score = ${playerScore}`;
+        }
     }
 }
-
