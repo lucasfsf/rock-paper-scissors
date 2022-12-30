@@ -5,18 +5,27 @@ const fireButton = document.querySelector('#fire');
 fireButton.addEventListener('click', (e) => {
     console.log(e.target);
     let playerChoice = 'fire';
-})
+    playRound(getComputerChoice(), playerChoice);
+});
+const waterButton = document.querySelector('#water');
+waterButton.addEventListener('click', (e) => {
+    console.log(e.target);
+    let playerChoice = 'water';
+    playRound(getComputerChoice(), playerChoice);
+});
+const plantButton = document.querySelector('#plant');
+plantButton.addEventListener('click', (e) => {
+    console.log(e.target);
+    let playerChoice = 'plant';
+    playRound(getComputerChoice(), playerChoice);
+});
+
+// Get divs to show results
+let roundResult = document.querySelector('#round');
 
 function getComputerChoice() {
     let randomPick = Math.floor(Math.random() * CHOICES.length);
     return CHOICES[randomPick];
-}
-
-function getPlayerChoice() {
-    let playerChoice = ""
-    // prompts user until he provides a proper input
-    
-    return playerChoice;
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -38,7 +47,7 @@ function playRound(computerSelection, playerSelection) {
         message = `You win. ${playerSelection} beats ${computerSelection}`
         winner = 1;
     }
-    console.log(message);
+    roundResult.textContent = message;
     return winner;
 }
 
