@@ -1,4 +1,11 @@
-const CHOICES = ["rock", "paper", "scissors"];
+const CHOICES = ['fire', 'water', 'plant'];
+
+// Add listeners to buttons
+const fireButton = document.querySelector('#fire');
+fireButton.addEventListener('click', (e) => {
+    console.log(e.target);
+    let playerChoice = 'fire';
+})
 
 function getComputerChoice() {
     let randomPick = Math.floor(Math.random() * CHOICES.length);
@@ -18,14 +25,14 @@ function playRound(computerSelection, playerSelection) {
     if (computerSelection === playerSelection) {
         message = `Its a tie. ${computerSelection} = ${playerSelection}`;
         winner = 0;
-    } else if (computerSelection === "rock" && playerSelection === "scissors") {
-        message = "You lose. Rock beats Scissors.";
+    } else if (computerSelection === "fire" && playerSelection === "plant") {
+        message = "You lose. Fire beats Plant.";
         winner = 2;
-    } else if (computerSelection === "scissors" && playerSelection === "paper") {
-        message = "You lose. Scissors beats Paper.";
+    } else if (computerSelection === "plant" && playerSelection === "water") {
+        message = "You lose. Plant beats Water.";
         winner = 2;
-    } else if (computerSelection === "paper" && playerSelection === "rock") {
-        message = "You lose. Paper beats Rock.";
+    } else if (computerSelection === "water" && playerSelection === "fire") {
+        message = "You lose. Water beats Fire.";
         winner = 2;
     } else {
         message = `You win. ${playerSelection} beats ${computerSelection}`
@@ -46,11 +53,11 @@ function getWinner(playerScore, computerScore) {
 }
 
 function game() {
-    let rounds = 5;
+    // let rounds = 5;
     let playerScore = 0;
     let computerScore = 0;
     let roundWinner;
-    for (let i = 0; i < rounds; i++) {
+    // for (let i = 0; i < rounds; i++) {
         console.log(`Rounds ${i+1}!`);
         console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
         // Plays round
@@ -62,7 +69,7 @@ function game() {
         } else if (roundWinner === 2) {
             computerScore++;
         }
-    }
+    // }
     getWinner(playerScore, computerScore);
 }
 
