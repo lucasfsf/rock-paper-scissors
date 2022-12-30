@@ -1,27 +1,30 @@
 const CHOICES = ['fire', 'water', 'plant'];
 
-// Add listeners to buttons
+// Get reference to buttons
 const fireButton = document.querySelector('#fire');
-fireButton.addEventListener('click', (e) => {
-    console.log(e.target);
-    let playerChoice = 'fire';
-    playRound(getComputerChoice(), playerChoice);
-});
 const waterButton = document.querySelector('#water');
-waterButton.addEventListener('click', (e) => {
-    console.log(e.target);
-    let playerChoice = 'water';
-    playRound(getComputerChoice(), playerChoice);
-});
 const plantButton = document.querySelector('#plant');
-plantButton.addEventListener('click', (e) => {
-    console.log(e.target);
-    let playerChoice = 'plant';
-    playRound(getComputerChoice(), playerChoice);
-});
 
-// Get divs to show results
+// Get reference to divs that display results
+let currentScore = document.querySelector('#score');
 let roundResult = document.querySelector('#round');
+let winnerResult = document.querySelector('#winner');
+
+// Scores
+let playerScore = 0;
+let computerScore = 0;
+
+// Play round
+fireButton.addEventListener('click', (e) => {
+    playRound(getComputerChoice(), 'fire');
+});
+waterButton.addEventListener('click', (e) => {
+    playRound(getComputerChoice(), 'water');
+});
+plantButton.addEventListener('click', (e) => {
+    playRound(getComputerChoice(), 'plant');
+});
+console.log(playerScore);
 
 function getComputerChoice() {
     let randomPick = Math.floor(Math.random() * CHOICES.length);
@@ -29,26 +32,23 @@ function getComputerChoice() {
 }
 
 function playRound(computerSelection, playerSelection) {
-    let winner; // 0 - tie; 1 - player; 2 - computer
     let message;
     if (computerSelection === playerSelection) {
         message = `Its a tie. ${computerSelection} = ${playerSelection}`;
-        winner = 0;
     } else if (computerSelection === "fire" && playerSelection === "plant") {
         message = "You lose. Fire beats Plant.";
-        winner = 2;
+        computerScore++;
     } else if (computerSelection === "plant" && playerSelection === "water") {
         message = "You lose. Plant beats Water.";
-        winner = 2;
+        computerScore++;
     } else if (computerSelection === "water" && playerSelection === "fire") {
         message = "You lose. Water beats Fire.";
-        winner = 2;
+        computerScore++;
     } else {
         message = `You win. ${playerSelection} beats ${computerSelection}`
-        winner = 1;
+        playerScore++;
     }
     roundResult.textContent = message;
-    return winner;
 }
 
 function getWinner(playerScore, computerScore) {
@@ -61,25 +61,3 @@ function getWinner(playerScore, computerScore) {
     }
 }
 
-function game() {
-    // let rounds = 5;
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundWinner;
-    // for (let i = 0; i < rounds; i++) {
-        console.log(`Rounds ${i+1}!`);
-        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
-        // Plays round
-        let computerSelection = getComputerChoice();
-        let playerSelection = getPlayerChoice();
-        roundWinner = playRound(computerSelection, playerSelection);
-        if (roundWinner === 1) {
-            playerScore++;
-        } else if (roundWinner === 2) {
-            computerScore++;
-        }
-    // }
-    getWinner(playerScore, computerScore);
-}
-
-game()
