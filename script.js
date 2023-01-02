@@ -33,7 +33,7 @@ function getComputerChoice() {
 function playRound(computerSelection, playerSelection) {
     let message;
     if (computerSelection === playerSelection) {
-        message = `Its a tie. ${computerSelection} = ${playerSelection}`;
+        message = `Its a tie. You both choose ${playerSelection}.`;
     } else if (computerSelection === "fire" && playerSelection === "plant") {
         message = "You lose. Fire beats Plant.";
         computerScore++;
@@ -49,11 +49,15 @@ function playRound(computerSelection, playerSelection) {
     }
     roundResult.textContent = `Round Result: ${message}`;
     currentScore.textContent = `Score: Player - ${playerScore}, Computer - ${computerScore}`;
-    if (playerScore >= 10 || computerScore >= 10) {
-        if (playerScore > computerScore) {
-            winnerResult.textContent = `You win. Player Score = ${playerScore} > Computer Score = ${computerScore}`;
-        } else {
-            winnerResult.textContent = `You lose. Computer Score = ${computerScore} > Player Score = ${playerScore}`;
-        }
+    if (playerScore >= 5 || computerScore >= 5) {
+       displayWinner(playerScore, computerScore);
+    }
+}
+
+function displayWinner(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        winnerResult.textContent = `You win. Player Score: ${playerScore} | Computer Score: ${computerScore}`;
+    } else {
+        winnerResult.textContent = `You lose. Computer Score: ${computerScore} | Player Score: ${playerScore}`;
     }
 }
