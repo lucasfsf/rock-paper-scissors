@@ -44,7 +44,7 @@ function playRound(computerSelection, playerSelection) {
         message = "You lose. Water beats Fire.";
         computerScore++;
     } else {
-        message = `You win. ${playerSelection} beats ${computerSelection}`
+        message = `You win. ${capitalizeFirstChar(playerSelection)} beats ${capitalizeFirstChar(computerSelection)}.`
         playerScore++;
     }
     roundResult.textContent = `Round Result: ${message}`;
@@ -60,4 +60,10 @@ function displayWinner(playerScore, computerScore) {
     } else {
         winnerResult.textContent = `You lose. Computer Score: ${computerScore} | Player Score: ${playerScore}`;
     }
+}
+
+function capitalizeFirstChar(string) {
+    let firstChar = string.charAt(0);
+    firstChar = firstChar.toUpperCase();
+    return firstChar + string.slice(1);
 }
