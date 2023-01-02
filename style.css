@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: aliceblue;
+    background-color: lightgray;
     font-size: 30px;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,15 @@ h1 {
 
 #fire {
     border-color: red;
+    background-color: lightcoral;
 }
 
 #water {
     border-color: blue;
+    background-color: lightblue;
 }
 
 #plant {
     border-color: green;
+    background-color: lightgreen;
 }
